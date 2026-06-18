@@ -59,9 +59,7 @@ export default function LoginPage() {
       >
         <div className="rounded-3xl border border-border bg-card p-8 sm:p-10 shadow-2xl">
           <div className="mb-8 flex flex-col items-center text-center">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-secondary text-white shadow-accent shadow-lg">
-              <Activity size={28} strokeWidth={2.5} />
-            </div>
+            <img src="/logo.png" alt="Analyzr" className="mb-6 h-14 w-14 rounded-2xl shadow-accent shadow-lg" />
             <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">Welcome back</h1>
             <p className="text-muted-foreground mt-2">Sign in to your analytics dashboard</p>
           </div>

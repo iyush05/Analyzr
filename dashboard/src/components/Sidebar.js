@@ -71,10 +71,8 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="flex h-20 shrink-0 items-center px-6">
         <Link href="/sites" className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-secondary text-white shadow-accent">
-            <Activity size={18} strokeWidth={2.5} />
-          </div>
-          {!collapsed && <span className="font-display text-xl font-bold tracking-tight">Analytics</span>}
+          <img src="/logo.png" alt="Analyzr" className="h-8 w-8 rounded-lg" />
+          {!collapsed && <span className="font-display text-xl font-bold tracking-tight">Analyzr</span>}
         </Link>
       </div>
 

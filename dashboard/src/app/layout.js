@@ -28,13 +28,14 @@ const jetbrainsMono = JetBrains_Mono({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const isAuthPage = pathname === '/login' || pathname === '/signup';
+  const isAuthPage = pathname === '/' || pathname === '/login' || pathname === '/signup';
 
   return (
     <html lang="en" className={`${inter.variable} ${calistoga.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <title>User Analytics Dashboard</title>
+        <title>Analyzr — User Analytics Dashboard</title>
         <meta name="description" content="Track user sessions, page views, clicks, and visualize interaction patterns with heatmaps." />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white">
         <AuthProvider>

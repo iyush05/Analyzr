@@ -31,7 +31,7 @@ export default function TrackingCodeModal({ site, onClose }) {
 </script>`;
 
   const npmSnippet = `// 1. Install the package
-// npm install @user-analytics/tracker
+// npm install @iyush05/analyzr
 
 // 2. Initialize it in your app entry point (e.g., App.js, index.js, or layout.js)
 import UserAnalytics from '@user-analytics/tracker';

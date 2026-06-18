@@ -1,0 +1,24 @@
+{
+  "name": "@user-analytics/tracker",
+  "version": "1.0.0",
+  "description": "Lightweight JavaScript tracking SDK for user analytics",
+  "main": "dist/tracker.umd.js",
+  "module": "dist/tracker.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "dev": "node esbuild.config.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0"
+  },
+  "keywords": [
+    "analytics",
+    "tracking",
+    "heatmap",
+    "user-analytics"
+  ],
+  "license": "MIT"
+}

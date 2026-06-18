@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Tracker Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #a78bfa;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #6366f1;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #4f46e5;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+    }
+
+    .btn-accent {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .btn-accent:hover {
+      background: #7c3aed;
+      transform: translateY(-1px);
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      color: #a78bfa;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      transition: all 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(167, 139, 250, 0.1);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .grid-item {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .grid-item:hover {
+      background: rgba(99, 102, 241, 0.2);
+      transform: scale(1.02);
+    }
+
+    .status {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .status .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>📊 Analytics Tracker Demo</h1>
+  <p class="subtitle">Click around this page to generate tracking events. Check the dashboard to see them appear.</p>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <div class="card">
+    <h2>🖱️ Interactive Buttons</h2>
+    <p style="margin-bottom: 1rem; color: #94a3b8;">Click these buttons to generate click events with different
+      coordinates.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="btn-get-started">Get Started</button>
+      <button class="btn btn-secondary" id="btn-learn-more">Learn More</button>
+      <button class="btn btn-accent" id="btn-sign-up">Sign Up</button>
+      <button class="btn btn-secondary" id="btn-docs">Documentation</button>
+      <button class="btn btn-primary" id="btn-pricing">View Pricing</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📦 Feature Grid</h2>
+    <p style="margin-bottom: 1rem; color: #94a3b8;">Click the cards below — each click captures x/y position for the
+      heatmap.</p>
+    <div class="grid">
+      <div class="grid-item" id="feature-analytics">📈 Analytics</div>
+      <div class="grid-item" id="feature-heatmaps">🔥 Heatmaps</div>
+      <div class="grid-item" id="feature-sessions">👤 Sessions</div>
+      <div class="grid-item" id="feature-realtime">⚡ Real-time</div>
+      <div class="grid-item" id="feature-export">📤 Export</div>
+      <div class="grid-item" id="feature-api">🔗 API Access</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 Form Elements</h2>
+    <p style="margin-bottom: 1rem; color: #94a3b8;">Interact with form elements to test click tracking on different
+      element types.</p>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+      <input type="text" placeholder="Enter your email" id="input-email"
+        style="padding: 0.75rem; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; flex: 1; min-width: 200px;">
+      <button class="btn btn-primary" id="btn-subscribe">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="status">
+    <span class="dot"></span>
+    Tracker active — events being sent to backend
+  </div>
+
+  <!-- Load the tracker SDK -->
+  <!-- User Analytics Tracking Code -->
+  <script src="http://localhost:3001/tracker.umd.js"></script>
+  <script>
+    UserAnalytics.init({
+      endpoint: 'http://localhost:3001',
+      siteId: '5882e3af-caa0-4eef-987a-c538b923a250',
+      debug: true
+    });
+  </script>
+</body>
+
+</html>

@@ -1,9 +1,17 @@
 {
   "name": "@iyush05/analyzr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Lightweight JavaScript tracking SDK for user analytics",
-  "main": "dist/tracker.umd.js",
+  "main": "dist/tracker.cjs.js",
   "module": "dist/tracker.esm.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/tracker.esm.js",
+      "require": "./dist/tracker.cjs.js",
+      "default": "./dist/tracker.cjs.js"
+    }
+  },
   "types": "index.d.ts",
   "files": [
     "dist",

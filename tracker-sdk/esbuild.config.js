@@ -30,3 +30,10 @@ esbuild.build({
   outfile: 'dist/tracker.esm.js',
   format: 'esm',
 }).then(() => console.log('✅ ESM build complete'));
+
+// CommonJS build for Node/Webpack requires
+esbuild.build({
+  ...shared,
+  outfile: 'dist/tracker.cjs.js',
+  format: 'cjs',
+}).then(() => console.log('✅ CJS build complete'));

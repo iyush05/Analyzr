@@ -33,13 +33,24 @@ export default function TrackingCodeModal({ site, onClose }) {
   const npmSnippet = `// 1. Install the package
 // npm install @iyush05/analyzr
 
-// 2. Initialize it in your app entry point (e.g., App.js, index.js, or layout.js)
-import UserAnalytics from '@user-analytics/tracker';
+// 2. Initialize it in your root component (e.g., App.js, layout.tsx, or _app.js)
+import { useEffect } from 'react';
+import UserAnalytics from '@iyush05/analyzr';
 
-UserAnalytics.init({
-  endpoint: '${backendUrl}',
-  siteId: '${site.siteId}'
-});`;
+export default function App({ children }) {
+  useEffect(() => {
+    // Only run on the client side
+    if (typeof window !== 'undefined') {
+      UserAnalytics.init({
+        endpoint: '${backendUrl}',
+        siteId: '${site.siteId}',
+        debug: process.env.NODE_ENV !== 'production'
+      });
+    }
+  }, []);
+
+  return <>{children}</>;
+}`;
 
   const currentSnippet = activeTab === 'html' ? htmlSnippet : npmSnippet;
 

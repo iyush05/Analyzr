@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { X, Code, Check, Copy } from 'lucide-react';
@@ -10,11 +10,19 @@ import { cn } from '@/lib/utils';
 export default function TrackingCodeModal({ site, onClose }) {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('html');
+  const [frontendUrl, setFrontendUrl] = useState('');
+
+  // Get the frontend origin for the script tag when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setFrontendUrl(window.location.origin);
+    }
+  }, []);
 
   const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
   const htmlSnippet = `<!-- User Analytics Tracking Code -->
-<script src="${backendUrl}/tracker.umd.js"></script>
+<script src="${frontendUrl}/tracker.umd.js"></script>
 <script>
   UserAnalytics.init({
     endpoint: '${backendUrl}',
